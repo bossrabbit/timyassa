@@ -1,26 +1,30 @@
 :root {
-  --paper: #f7f2ea;
-  --paper-deep: #efe6d8;
-  --sand: #d9cbb4;
-  --dune: #c4b094;
-  --ink: #1a1714;
-  --charcoal: #2a241f;
-  --stone: #5e564e;
-  --muted: #7a7168;
-  --line: rgba(26, 23, 20, 0.12);
-  --line-strong: rgba(26, 23, 20, 0.22);
-  --ocean: #2f5d66;
-  --lagoon: #4a7c82;
-  --foam: #b7d0ce;
-  --terracotta: #b85c38;
-  --clay: #8f4630;
-  --gold: #c4a36c;
-  --sunrise: #e09a4f;
-  --white: #fffcf7;
-  --focus: #c4a36c;
+  --paper: #fff1dc;
+  --paper-deep: #ffd7b0;
+  --sand: #ffc078;
+  --dune: #f59e4c;
+  --ink: #12323a;
+  --charcoal: #1c4650;
+  --stone: #3a6770;
+  --muted: #5b838a;
+  --line: rgba(18, 90, 98, 0.14);
+  --line-strong: rgba(18, 90, 98, 0.26);
+  --ocean: #067f86;
+  --lagoon: #14c4c0;
+  --foam: #8ef0e8;
+  --terracotta: #ff4b2b;
+  --clay: #e22f1c;
+  --gold: #ffc107;
+  --sunrise: #ff8c22;
+  --magenta: #ee3d82;
+  --white: #fffaf3;
+  --focus: #14c4c0;
+  --voices: #027a82;
+  --voices-deep: #045e78;
+  --header-scrolled: rgba(255, 241, 220, 0.94);
 
-  --font-display: "Fraunces", "Palatino Linotype", Palatino, "Times New Roman", serif;
   --font-sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: var(--font-sans);
 
   --text: clamp(1.05rem, 0.98rem + 0.32vw, 1.175rem);
   --lead: clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem);
@@ -71,7 +75,7 @@ body.nav-open {
 }
 
 body.nav-open .site-header {
-  background: rgba(247, 242, 234, 0.96);
+  background: var(--header-scrolled);
   color: var(--ink);
 }
 
@@ -108,8 +112,8 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
   line-height: 1.12;
   margin: 0;
 }
@@ -163,7 +167,6 @@ p:last-child {
 
 .section-heading {
   font-size: var(--h2);
-  font-variation-settings: "SOFT" 40, "opsz" 144;
   max-width: 16ch;
 }
 
@@ -208,7 +211,7 @@ p:last-child {
 
 .site-header.is-scrolled,
 .legal-body .site-header {
-  background: rgba(247, 242, 234, 0.92);
+  background: var(--header-scrolled);
   color: var(--ink);
   backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 var(--line);
@@ -225,9 +228,9 @@ p:last-child {
 
 .logo {
   font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-style: italic;
-  letter-spacing: 0.08em;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -328,8 +331,9 @@ p:last-child {
   overflow: hidden;
   isolation: isolate;
   display: grid;
+  grid-template-rows: 1fr auto;
   place-items: center;
-  padding: calc(var(--header) + 0.5rem) var(--gutter) 1.25rem;
+  padding: 0 1rem 1.6rem;
 }
 
 .hero__media,
@@ -352,7 +356,7 @@ p:last-child {
     180deg,
     rgba(16, 13, 11, 0.28) 0%,
     rgba(16, 13, 11, 0.08) 38%,
-    rgba(16, 13, 11, 0.22) 100%
+    rgba(16, 13, 11, 0.38) 100%
   );
   z-index: 1;
 }
@@ -363,7 +367,8 @@ p:last-child {
   display: grid;
   place-items: center;
   width: 100%;
-  height: min(calc(100svh - var(--header) - 1.5rem), 58rem);
+  height: 100%;
+  min-height: 0;
   pointer-events: none;
   filter: drop-shadow(0 18px 32px rgba(8, 6, 4, 0.45));
   animation: figure-in 1.4s var(--ease) both;
@@ -376,10 +381,32 @@ p:last-child {
 .hero__figure img {
   width: auto;
   height: auto;
-  max-width: min(100%, 64rem);
-  max-height: 100%;
+  max-width: 92vw;
+  max-height: calc(100svh - 6.5rem);
+  max-height: calc(100dvh - 6.5rem);
   object-fit: contain;
   object-position: center;
+}
+
+.hero__dates {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 1200px) {
+  .hero__figure img {
+    max-width: min(82vw, 96rem);
+    max-height: calc(100svh - 5.5rem);
+    max-height: calc(100dvh - 5.5rem);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -430,13 +457,14 @@ p:last-child {
 
 .facts dd {
   font-family: var(--font-display);
-  font-size: 1.28rem;
+  font-size: 1.2rem;
+  font-weight: 500;
   line-height: 1.3;
 }
 
 .facts .sold {
   color: var(--terracotta);
-  font-style: italic;
+  font-weight: 700;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -487,8 +515,10 @@ p:last-child {
 
 .day__index {
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--terracotta);
   position: relative;
   padding-left: 1.4rem;
@@ -526,7 +556,6 @@ p:last-child {
 
 .day h3 {
   font-size: var(--h3);
-  font-style: italic;
 }
 
 .day .when {
@@ -542,8 +571,34 @@ p:last-child {
 /* -------------------------------------------------------------------------- */
 
 .voices {
+  position: relative;
   padding: var(--section) 0;
-  background: var(--paper-deep);
+  background:
+    linear-gradient(165deg, var(--voices) 0%, var(--voices-deep) 58%, #0a4560 100%);
+  color: var(--white);
+}
+
+.voices::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: linear-gradient(
+    90deg,
+    var(--terracotta) 0%,
+    var(--sunrise) 28%,
+    var(--gold) 52%,
+    var(--lagoon) 78%,
+    var(--magenta) 100%
+  );
+}
+
+.voices .eyebrow {
+  color: #fff4b8;
+}
+
+.voices .section-heading {
+  color: var(--white);
 }
 
 .voices-head {
@@ -557,7 +612,7 @@ p:last-child {
 .disclaimer {
   max-width: 24rem;
   font-size: 0.92rem;
-  color: var(--stone);
+  color: rgba(255, 250, 243, 0.78);
 }
 
 .carousel {
@@ -595,7 +650,8 @@ p:last-child {
   height: 8.5rem;
   object-fit: cover;
   border-radius: 50%;
-  filter: saturate(0.92);
+  border: 3px solid var(--gold);
+  filter: saturate(1.08);
 }
 
 .quote {
@@ -604,11 +660,11 @@ p:last-child {
 
 .quote p {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
-  font-style: italic;
+  font-size: clamp(1.2rem, 1.05rem + 0.8vw, 1.65rem);
   font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: -0.015em;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--white);
 }
 
 .quote footer {
@@ -625,7 +681,7 @@ p:last-child {
 
 .quote .from {
   display: block;
-  color: var(--muted);
+  color: var(--foam);
   letter-spacing: 0.06em;
   margin-top: 0.15rem;
 }
@@ -640,9 +696,9 @@ p:last-child {
 .carousel__btn {
   width: 2.75rem;
   height: 2.75rem;
-  border: 1px solid var(--line-strong);
+  border: 1px solid rgba(255, 250, 243, 0.42);
   background: transparent;
-  color: var(--ink);
+  color: var(--white);
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -650,8 +706,8 @@ p:last-child {
 }
 
 .carousel__btn:hover {
-  border-color: var(--ink);
-  background: var(--paper);
+  border-color: var(--white);
+  background: rgba(255, 250, 243, 0.12);
 }
 
 .carousel__btn svg {
@@ -671,12 +727,12 @@ p:last-child {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: var(--dune);
+  background: rgba(255, 250, 243, 0.38);
   cursor: pointer;
 }
 
 .carousel__dots button.is-active {
-  background: var(--terracotta);
+  background: var(--gold);
   transform: scale(1.15);
 }
 
@@ -685,8 +741,8 @@ p:last-child {
 /* -------------------------------------------------------------------------- */
 
 .included {
-  padding: 0 0 var(--section);
-  background: var(--paper-deep);
+  padding: var(--section) 0;
+  background: var(--paper);
 }
 
 .included-list {
@@ -706,8 +762,8 @@ p:last-child {
 
 .included-list strong {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .included-list span {
@@ -742,7 +798,7 @@ p:last-child {
 .booking__veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(16, 13, 11, 0.72), rgba(16, 13, 11, 0.86));
+  background: linear-gradient(180deg, rgba(4, 70, 82, 0.72), rgba(10, 28, 38, 0.9));
   z-index: 1;
 }
 
@@ -756,9 +812,9 @@ p:last-child {
 }
 
 .sold-panel {
-  border: 1px solid rgba(196, 163, 108, 0.45);
+  border: 1px solid rgba(255, 193, 7, 0.5);
   padding: 1.5rem 1.5rem 1.35rem;
-  background: rgba(26, 23, 20, 0.35);
+  background: rgba(4, 40, 52, 0.45);
   max-width: 28rem;
 }
 
@@ -770,11 +826,11 @@ p:last-child {
 }
 
 .sold-title {
-  font-size: clamp(2.6rem, 2rem + 3vw, 4.4rem);
-  font-style: italic;
-  letter-spacing: 0.08em;
+  font-size: clamp(2.4rem, 1.8rem + 3vw, 4.1rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #f0c9a0;
+  color: var(--gold);
   margin: 0.35rem 0 0.7rem;
 }
 
@@ -787,24 +843,6 @@ p:last-child {
   background: var(--paper);
   color: var(--ink);
   padding: clamp(1.5rem, 3vw, 2.25rem);
-}
-
-.booking-card::after {
-  content: "SOLD OUT";
-  position: absolute;
-  right: 8%;
-  top: 42%;
-  transform: rotate(-18deg);
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(2.4rem, 2rem + 3vw, 4rem);
-  letter-spacing: 0.12em;
-  color: var(--terracotta);
-  border: 3px solid var(--terracotta);
-  padding: 0.15rem 0.55rem 0.05rem;
-  opacity: 0.78;
-  pointer-events: none;
-  mix-blend-mode: multiply;
 }
 
 .booking-card h3 {
@@ -897,7 +935,7 @@ p:last-child {
 /* -------------------------------------------------------------------------- */
 
 .site-footer {
-  background: var(--ink);
+  background: #0a2c36;
   color: var(--sand);
   padding: 3.25rem 0 2.4rem;
 }
@@ -911,10 +949,10 @@ p:last-child {
 
 .footer-brand {
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: 2rem;
+  font-weight: 700;
+  font-size: 1.85rem;
   color: var(--white);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -1160,13 +1198,5 @@ p:last-child {
 
   .carousel__viewport {
     min-height: 0;
-  }
-
-  .booking-card::after {
-    top: auto;
-    bottom: 1.25rem;
-    right: 0.9rem;
-    font-size: 1.7rem;
-    opacity: 0.5;
   }
 }
